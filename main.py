@@ -8,10 +8,6 @@ import numpy as np
 
 class Read:
 
-    def __init__(self):
-        self.p1 = (0, 0)
-        self.p2 = (640, 480)
-
     def getFromImage(self, text, show=False):
         """
         PilImage formate QRcode
