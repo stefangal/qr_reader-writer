@@ -29,12 +29,10 @@ class Read:
         vidcap = cv2.VideoCapture(0)
         succ, img = vidcap.read()
         succ = True
-        count = 0
         while succ:
             cv2.imshow('img', img)
             succ, img = vidcap.read()
             cv2.imwrite(os.path.join(path_output_dir, 'qrcode.png'), img)
-            count += 1
             data = pyzbar.decode(Image.open(os.path.join(path_output_dir, 'qrcode.png')))
             os.remove(os.path.join(path_output_dir, 'qrcode.png'))
             if cv2.waitKey(1) & 0xFF == ord('q'):
