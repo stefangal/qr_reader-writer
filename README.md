@@ -12,8 +12,10 @@ rd.read_QR_code(path)
 In order read the QR code your webcam will start up.
 When you show the QR code, it will be registered in the "register.txt" file in format "time***QR-data " i.e.:
 
-``` Tue Jun  9 07:28:24 2020***https://barcodesegypt.com ```
+``` Tue Jun  9 07:28:24 2020***MobileApp```
 
+Webcam output:
+<img src='screenshot.png'></img>
 To QUIT use "q"
 
 <b> GENERATING </b>

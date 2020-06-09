@@ -4,8 +4,14 @@ import os
 import cv2
 from pyzbar import pyzbar
 import time
+import numpy as np
 
 class Read:
+
+    def __init__(self):
+        self.p1 = (0, 0)
+        self.p2 = (640, 480)
+
     def getFromImage(self, text, show=False):
         """
         PilImage formate QRcode
@@ -40,6 +46,10 @@ class Read:
             if data:
                 for info in data:
                     actTime = time.asctime()
+                    pts = np.array([info.polygon], np.int32)
+                    pts = pts.reshape((-1, 1, 2))
+                    cv2.polylines(img, [pts], True, (0, 255, 0), 3)
+                    cv2.putText(img, info.data.decode(), (info.rect[0], info.rect[1]), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0, 0, 255), 2)
                     if info.data.decode() not in report_history:
                         report_history.append(info.data.decode())
                         if report_history[-1] != report:
@@ -51,6 +61,8 @@ class Read:
         vidcap.release()
 
 
+
+
 rd = Read()
-rd.getFromImage('Test qr code', True)
-# rd.read_QR_code('C:\\Users\\stefan.gal\\Documents\\Python\\Projects\\')
+# rd.getFromImage('Test qr code', True)
+rd.read_QR_code('C:\\Users\\stefan.gal\\Documents\\Python\\Projects\\')
