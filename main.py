@@ -33,7 +33,7 @@ class Read:
             cv2.imshow('img', img)
             succ, img = vidcap.read()
             cv2.imwrite(os.path.join(path_output_dir, 'qrcode.png'), img)
-            data = pyzbar.decode(Image.open(os.path.join(path_output_dir, 'qrcode.png')))
+            data = pyzbar.decode(Image.open(os.path.join(path_output_dir, 'qrcode.png')), symbols=[pyzbar.ZBarSymbol.QRCODE])
             os.remove(os.path.join(path_output_dir, 'qrcode.png'))
             if cv2.waitKey(1) & 0xFF == ord('q'):
                 break
@@ -41,7 +41,6 @@ class Read:
                 for info in data:
                     actTime = time.asctime()
                     pts = np.array([info.polygon], np.int32)
-                    pts = pts.reshape((-1, 1, 2))
                     cv2.polylines(img, [pts], True, (0, 255, 0), 3)
                     cv2.putText(img, info.data.decode(), (info.rect[0], info.rect[1]), cv2.FONT_HERSHEY_COMPLEX, 0.8, (0, 0, 255), 2)
                     if info.data.decode() not in report_history:
