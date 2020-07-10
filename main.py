@@ -50,12 +50,13 @@ class Read:
                             with open('register.txt', 'a') as f:
                                 f.writelines(actTime + "***" + report + "\n" )
                                 print(report)
+                                return report
         cv2.destroyAllWindows()
         vidcap.release()
 
 
 
-
-rd = Read()
-# rd.getFromImage('Test qr code', True)
-rd.read_QR_code('C:\\Users\\stefan.gal\\Documents\\Python\\Projects\\')
+if __name__ == "__main__":
+    rd = Read()
+    # rd.getFromImage('Test qr code', True)
+    rd.read_QR_code('C:\\Users\\stefan.gal\\Documents\\Python\\Projects\\')
