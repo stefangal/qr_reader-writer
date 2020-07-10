@@ -9,7 +9,6 @@ class TestRead(unittest.TestCase):
         cls.rd = Read()
 
     def test_read_QR_code(self):
-        txt = "hello world"
         path = r"C:\Users\stefan.gal\Documents\Python\GithubForks\qr_reader-writer\tests"
         x = self.rd.read_QR_code(path)
         print(x)
